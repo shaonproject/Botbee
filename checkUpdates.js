@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
-const repoOwner = 'dipto-008'; 
+const repoOwner = 'shaonproject'; 
 const repoName = 'Telegram-Bot-V1';
 async function checkForUpdates() {
   try {
