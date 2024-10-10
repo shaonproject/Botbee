@@ -21,13 +21,13 @@
   ],
   "author": "Dipto",
   "license": "Open License - Non-Commercial",
-  "homepage": "https://github.com/dipto-008/BotBee#readme",
+  "homepage": "https://github.com/shaonproject/Botbee#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dipto-008/BotBee.git"
+    "url": "https://github.com/shaonproject/Botbee.git"
   },
   "bugs": {
-    "url": "https://github.com/dipto-008/BotBee/issues"
+    "url": "https://github.com/shaonproject/Botbee/issues"
   },
   "dependencies": {
     "@types/node": "^18.0.6",
