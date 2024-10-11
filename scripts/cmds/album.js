@@ -1,14 +1,13 @@
-module.exports.config = {
-  name: "album",
-  version: "0.0.3",
-  role: 0,
-  prefix: 'awto',
-  credits: "Nayan",
-  description: "Random video",
-  category: "user",
-  usages: "",
-  cooldowns: 5,
-};
+    module.exports.config = {
+    name: "album",
+    version: "1.0.0",
+    role: 0,
+    author: "Dipto", //Don't Change Author name.
+    description: "Displays album options for selection.",
+    category: "Media",
+    countDown: 5,
+    guide:"{p}or add [cartoon/photo/lofi/sad/islamic/funny/horny/anime]"
+  };
 
 module.exports.run = async function({
   event: e,
