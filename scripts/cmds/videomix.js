@@ -41,12 +41,12 @@ module.exports.run = async function({ api, event }) {
   let count = res.data.count;
   let shaon2 = res.data.shaon;
   let callback = function () {
-          api.sendMessage({
+          api.message.reply({
             body: `𝐒𝐏𝐀𝐘𝐒𝐇𝐄𝐀𝐋 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐈𝐗 
 ${shaon2} 𝚃𝙾𝚃𝙰𝙻 𝚅𝙸𝙳𝙴𝙾:${count}...🎬\n\n｢𝐒𝐇𝐀𝐎𝐍 𝐏𝐑𝐎𝐉𝐄𝐂𝐓｣`,
-            attachment: fs.createReadStream(__dirname + `/cache/Shaoon.mp4`)
-          }, event.threadID, () => fs.unlinkSync(__dirname + `/cache/Shaoon.mp4`), event.messageID);
+            attachment: fs.message.stream(__dirname + `/caches/Shaoon.mp4`)
+          }, event.threadID, () => fs.unlinkSync(__dirname + `/caches/Shaoon.mp4`), event.messageID);
         };
-        request(res.data.data).pipe(fs.createWriteStream(__dirname + `/cache/Shaoon.mp4`)).on("close", callback);
+        request(res.data.data).pipe(fs.message.stream(__dirname + `/caches/Shaoon.mp4`)).on("close", callback);
       })
 }
