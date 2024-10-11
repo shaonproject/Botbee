@@ -44,9 +44,9 @@ module.exports.run = async function({ api, event }) {
           api.message.reply({
             body: `𝐒𝐏𝐀𝐘𝐒𝐇𝐄𝐀𝐋 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐈𝐗 
 ${shaon2} 𝚃𝙾𝚃𝙰𝙻 𝚅𝙸𝙳𝙴𝙾:${count}...🎬\n\n｢𝐒𝐇𝐀𝐎𝐍 𝐏𝐑𝐎𝐉𝐄𝐂𝐓｣`,
-            attachment: fs.message.stream(__dirname + `/caches/Shaoon.mp4`)
+            attachment: fs.createWriteStream(__dirname + `/caches/Shaoon.mp4`)
           }, event.threadID, () => fs.unlinkSync(__dirname + `/caches/Shaoon.mp4`), event.messageID);
         };
-        request(res.data.data).pipe(fs.message.stream(__dirname + `/caches/Shaoon.mp4`)).on("close", callback);
+        request(res.data.data).pipe(fs.createWriteStream(__dirname + `/caches/Shaoon.mp4`)).on("close", callback);
       })
 }
