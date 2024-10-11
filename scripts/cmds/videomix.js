@@ -41,7 +41,7 @@ module.exports.run = async function({ api, event }) {
   let count = res.data.count;
   let shaon2 = res.data.shaon;
   let callback = function () {
-          api.message.reply({
+          api.sendMessage({
             body: `𝐒𝐏𝐀𝐘𝐒𝐇𝐄𝐀𝐋 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐈𝐗 
 ${shaon2} 𝚃𝙾𝚃𝙰𝙻 𝚅𝙸𝙳𝙴𝙾:${count}...🎬\n\n｢𝐒𝐇𝐀𝐎𝐍 𝐏𝐑𝐎𝐉𝐄𝐂𝐓｣`,
             attachment: fs.createWriteStream(__dirname + `/caches/Shaoon.mp4`)
