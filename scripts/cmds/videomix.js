@@ -1,7 +1,7 @@
 module.exports.config = {
   name: "videomix",
   version: "11.9.7",
-  permssion: 0,
+  role: 0,
   credits: "Islamick Cyber Chat",
   prefix:true,
   description: "random love story video",
