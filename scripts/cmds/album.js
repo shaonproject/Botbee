@@ -1,82 +1,110 @@
-    module.exports.config = {
-    name: "album",
-    version: "1.0.0",
-    role: 0,
-    author: "Dipto", //Don't Change Author name.
-    description: "Displays album options for selection.",
-    category: "Media",
-    countDown: 5,
-    guide:"{p}or add [cartoon/photo/lofi/sad/islamic/funny/horny/anime]"
-  };
+const axios = require("axios");
 
-module.exports.run = async function({
-  event: e,
-  api: a,
-  args: n
-}) {
-  if (!n[0]) return a.message.reply("╭──────•𝚂𝙷𝙰𝙾𝙽 𝙿𝚁𝙾𝙹𝙴𝙲𝚃•──────╮\n\n☢━━━━━━💛𝙰𝙻𝙱𝚄𝙼 𝚅𝙸𝙳𝙴𝙾💛━━━━━━☢ \n!\n!➤1 𝙸𝚂𝙻𝙰𝙼 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤2 𝙰𝙽𝙸𝙼𝙴 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤3 𝚂𝙷𝙰𝙸𝚁𝙸 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤4 𝚂𝙷𝙾𝚁𝚃 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤5 𝚂𝙰𝙳𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤6 𝚂𝚃𝙰𝚃𝚄𝚂 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤7 𝙵𝙾𝙾𝚃𝙱𝙰𝙻𝙻 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤8 𝙵𝚄𝙽𝙽𝚈 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤9 𝙻𝙾𝚅𝙴 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤10 𝙲𝙿𝙻 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤11 𝙱𝙰𝙱𝚈 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤12 𝙵𝚁𝙴𝙴 𝙵𝙸𝚁𝙴 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤13 𝙻𝙾𝙵𝙸 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤14 𝙷𝙰𝙿𝙿𝚈 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤15 𝙷𝚄𝙼𝙰𝙸𝚈𝚄𝙽 𝚂𝙸𝚁 𝚅𝙸𝙳𝙴𝙾◄┈╯\n☢━━━━━━💚𝙷𝙾𝚃 𝚅𝙸𝙳𝙴𝙾━━━━━━☢\n!➤16 𝚂𝙴𝚇 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤17 𝙷𝙾𝚁𝙽𝚈 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤18 𝙸𝚃𝙴𝙼 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤19 𝙷𝙾𝚃 𝚅𝙸𝙳𝙴𝙾◄┈╯\n!\n!➤20 𝙲𝙰𝙿𝙲𝚄𝚃 𝚅𝙸𝙳𝙴𝙾◄┈╯\n━━━━━━━━━━━━━━━━━━━━━\n𝙾𝚆𝙽𝙴𝚁:𝚂𝙷𝙰𝙾𝙽 𝙰𝙷𝙼𝙴𝙳\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n𝙰 𝙿 𝙸//𝚂𝙷𝙰𝙾𝙽\n━━━━━━━━━━━━━━━━━━━━━\n╰──────•𝚂𝙷𝙰𝙾𝙽 𝙿𝚁𝙾𝙹𝙴𝙲𝚃•──────╯\n\nTell me how many video numbers you want to see by replaying this message", e.threadID, ((a, n) => {
-    global.client.handleReply.set({
-      name: this.config.name,
-      messageID: n.messageID,
-      author: e.senderID,
-      type: "reply"
-    })
-  }), e.messageID)
-}; 
-
-module.exports.handleReply = async ({
-  api: e,
-  event: a,
-  client: n,
-  handleReply: t,
-  Currencies: s,
-  Users: i,
-  Threads: o
-}) => {
-  var { p, h } = await linkanh(a.body);
-  const axios = require("axios");
-  if ("reply" === t.type) {
-    const response = await p.get(h);
-    const data = response.data.data;
-    const cap = response.data.shaon;
-    const cn = response.data.count;
-    let nayan = (await p.get(data, {
-      responseType: "stream"
-    })).data;
-    return e.message.reply({
-      body: `🟡${cap}\n𝚃𝙾𝚃𝙰𝙻 𝚅𝙸𝙳𝙴𝙾:${cn}\n𝙰 𝙿 𝙸  𝚂 𝙷 𝙰 𝙾 𝙽📛`,
-      attachment: nayan
-    }, a.threadID, a.messageID)
+module.exports.config = {
+  name: "album",
+  aliases: ["Album", "albam" ],
+  version: "2.0.2",
+  role: 0,
+  author: "♡ Nazrul ♡",
+  category: "Album Video",
+  description: "Get Video From Album list",
+  countDowns: 2,
+  guide: {
+    en: "{p}{n} or type [album]"
   }
 };
 
-async function linkanh(choice) {
-  const axios = require("axios");
-  const apis = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json');
-  const n = apis.data.api
-  const options = {
-    "1": "/video/islam",
-    "2": "/video/anime",
-    "3": "/video/shairi",
-    "4": "/video/short",
-    "5": "/video/sad",
-    "6": "/video/status",
-    "7": "/video/football",
-    "8": "/video/funny",
-    "9": "/video/love",
-    "10": "/video/cpl",
-    "11": "/video/baby",
-    "12": "/video/ff",
-    "13": "/video/lofi",
-    "14": "/video/happy",
-    "15": "/video/humaiyun",
-    "16": "/video/sex",
-    "17": "/video/horny",
-    "18": "/video/item",
-    "19": "/video/hot",
-    "20": "/video/capcut",
-    
-  };
-  const h = `${n}${options[choice]}`;
-  return { p: axios, h };
-}
+module.exports.onStart = async ({ api, event, args, Reply }) => {
+  if (!args[0]) {
+    const albumMsg = "«------•I|[💫ミ★  𝐀𝐥𝐛𝐮𝐦 𝐕𝐢𝐝𝐞𝐨 𝐋𝐢𝐬𝐭  ★彡💫]|I{•------»\n⊰᯽⊱┈──╌❊🔰𝐍𝐚𝐳𝐫𝐮𝐥🔰❊╌──┈⊰᯽⊱\n𝐍𝐨.𝟎 ♡ 𝐀𝐭𝐭𝐢𝐭𝐮d𝐞 𝗩𝗶𝗱𝗲𝗼'𝘀 😎💫 \n𝐍𝐨.𝟏 ♡ 𝗦𝘁𝗮𝘁𝘂𝘀 𝗩𝗶𝗱𝗲𝗼'𝘀 🥰💫 \n𝐍𝐨.𝟐 ♡ 𝗡𝗮𝘁𝘂𝗿𝗮𝗹 𝘃𝗶𝗱𝗲𝗼'𝘀 😽💫 \n𝐍𝐨.𝟑 ♡ 𝗜𝘀𝗹𝗮𝗺𝗶𝗰 𝘃𝗶𝗱𝗲𝗼'𝘀 🕋💫 \n𝐍𝐨.𝟒 ♡ 𝗟𝗼𝘃𝗲 𝗩𝗶𝗱𝗲𝗼'𝘀 ❤💫\n𝐍𝐨.𝟓  ♡ 𝗦𝘂𝗿𝗮 𝗩𝗶𝗱𝗲𝗼'𝘀 😊 💫\n𝐍𝐨.𝟔 ♡ 𝗦𝘁𝗮𝘁𝘂𝘀 𝗩𝗶𝗱𝗲𝗼'𝘀 🤔💫\n𝐍𝐨.𝟕 ♡ 𝗙𝗿𝗲𝗲 𝗙𝗶𝗿𝗲 𝗩𝗶𝗱𝗲𝗼'𝘀 😈💫\n𝐍𝐨.𝟖 ♡ 𝗦𝗮𝗱 𝗩𝗶𝗱𝗲𝗼'𝘀 🥹💫\n𝐍𝐨.𝟗 ♡ 𝗔𝗻𝗶𝗺𝗲 𝗩𝗶𝗱𝗲𝗼'𝘀 🤠💫\n𝐍𝐨.𝟏𝟎 ♡ 𝗦𝗵𝗼𝗿𝘁 𝗠𝗶𝘅 𝗩𝗶𝗱𝗲𝗼'𝘀 🥳💫 \n𝐍𝐨.𝟏𝟏 ♡ 𝗖𝗼𝘂𝗽𝗹𝗲 𝗩𝗶𝗱𝗲𝗼'𝘀 🧡💫 \n𝐍𝐨.𝟏𝟐 ♡ 𝗖𝘂𝘁𝗲 𝗕𝗮𝗯𝘆 𝗩𝗶𝗱𝗲𝗼'𝘀 🤫💫 \n𝐍𝐨.𝟏𝟑 ♡ 𝗧𝗿𝘂𝗲 𝗟𝗶𝗻𝗲 𝗩𝗶𝗱𝗲𝗼'𝘀 🙂💫\n\n«------•}I| 〚 𝐇𝐨𝐭 & 𝐒𝐞𝐱𝐮𝐚𝐥 & 𝐎𝐭𝐡𝐞𝐫 𝐕𝐢𝐝𝐞𝐨𝐬 〛 |I{•------»\n⊰᯽⊱┈──╌❊「 𝟏𝟖+ 」❊╌──┈⊰᯽⊱\n𝐍𝐨.𝟏𝟒 ♡ 𝑯𝒐𝒕 𝑽𝒊𝒅𝒆𝒐'𝒔 😐💫 \n𝐍𝐨.𝟏𝟓 ♡ 𝑺𝟑𝑿 𝑽𝒊𝒅𝒆𝒐𝒔 🥵💫 \n𝐍𝐨.𝟏𝟔 ♡ 𝑯𝒐𝒓𝒏𝒚 𝑽𝒊𝒅𝒆𝒐'𝒔 😶💫\n𝐍𝐨.𝟏𝟕 ♡ 𝑰𝒕𝒆𝒎 𝒗𝒊𝒅𝒆𝒐 😷💫\n\n✶⊶⊷⊶⊷❍ ❣︵𝑨𝒍𝒍 𝑽𝒊𝒅𝒆𝒐𝒔 𝑯𝒆𝒓𝒆︵❣❍⊶⊷⊶⊷✶\n\n𝑹𝒆𝒑𝒍𝒚 𝑻𝒉𝒊𝒔 𝑴𝒆𝒔𝒔𝒔𝒂𝒈𝒆 𝑾𝒊𝒕𝒉 𝒋𝒖𝒔𝒕 𝑵𝒖𝒎𝒃𝒆𝒓 𝒐𝒇 𝒗𝒊𝒅𝒆𝒐⛱ ";
+    api.sendMessage(albumMsg, event.threadID, (error, info) => {
+      if (error) return console.error(error);
+      global.GoatBot.onReply.set(info.messageID, {
+        commandName: module.exports.config.name,
+        type: "reply",
+        messageID: info.messageID,
+        author: event.senderID,
+        msg: albumMsg,
+      });
+    }, event.messageID);
+  }
+};
+
+module.exports.onReply = async ({ api, event, Reply }) => {
+  try {
+    api.unsendMessage(Reply.messageID);
+    if (event.type === "message_reply") {
+      const reply = event.body.trim();
+      let nazrulUrl;
+      switch (reply) {
+        case '0':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/attitude";
+          break;
+        case '1':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/status2";
+          break;
+        case '2':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/natural";
+          break;
+        case '3':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/islam";
+          break;
+        case '4':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/love";
+         break;
+        case '5':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/sura";
+          break;
+        case '6':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/status";
+          break;
+        case '7':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/ff";
+          break;
+        case '8':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/sad";
+          break;
+        case '9':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/anime";
+          break;
+        case '10':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/short";
+          break;
+        case '11':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/cpl";
+          break;
+        case '12':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/baby";
+          break;
+        case '13':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/shairi";
+          break;
+        case '14':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/hot";
+          break;
+        case '15':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/sex";
+          break;
+        case '16':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/horny";
+          break;
+        case '17':
+          nazrulUrl = "https://x9-apis-2.onrender.com/video/item";
+          break;
+        default:
+          return api.sendMessage("𝒊𝒏𝒗𝒂𝒊𝒍𝒅 𝒄𝒉𝒐𝒊𝒄𝒆. 𝑷𝒍𝒆𝒂𝒔𝒆 𝒓𝒆𝒑𝒍𝒚 𝒘𝒊𝒕𝒉 𝒂 𝒏𝒖𝒎𝒃𝒆𝒓 𝒃𝒆𝒕𝒘𝒆𝒆𝒏 𝟏 𝒂𝒏𝒅 𝟏𝟕.", event.threadID, event.messageID);
+      }
+
+      const res = await axios.get(nazrulUrl);
+      const dataUrl = res.data.data;
+      const n4zr9l = (await axios.get(dataUrl, { responseType: 'stream' })).data;
+
+      api.sendMessage({
+        body: "-`彡🔰𝐇𝐞𝐫𝐞'𝐬 𝐘𝐨𝐮𝐫 𝐕𝐢𝐝𝐞𝐨 𝐓𝐡𝐚𝐭 𝐘𝐨𝐮 𝐖𝐚𝐧𝐭♡⛱",
+        attachment: n4zr9l
+      }, event.threadID, event.messageID);
+    }
+  } catch (error) {
+    api.sendMessage("error: " + error.message, event.threadID, event.messageID);
+  }
+};
