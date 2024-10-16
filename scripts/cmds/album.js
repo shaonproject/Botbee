@@ -99,12 +99,12 @@ onReply = async ({ api, event, Reply }) => {
       const dataUrl = res.data.data;
       const n4zr9l = (await axios.get(dataUrl, { responseType: 'stream' })).data;
 
-      api.sendMessage({
+      bot.sendMessage({
         body: "-`彡🔰𝐇𝐞𝐫𝐞'𝐬 𝐘𝐨𝐮𝐫 𝐕𝐢𝐝𝐞𝐨 𝐓𝐡𝐚𝐭 𝐘𝐨𝐮 𝐖𝐚𝐧𝐭♡⛱",
         attachment: n4zr9l
       }, event.threadID, event.messageID);
     }
   } catch (error) {
-    vot.sendMessage("error: " + error.message, event.threadID, event.messageID);
+    bot.sendMessage("error: " + error.message, event.threadID, event.messageID);
   }
 };
