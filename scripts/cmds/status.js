@@ -22,7 +22,7 @@ module.exports.run = async function({ api, message }) {
   axios.get(shaon1).then(res => {
 message.stream({
 url: res.data.data.url.url,
-caption: `°\n\n__${res.data.data.url.title}\n\n🍂𝙱𝙾𝚃 𝙾𝚆𝙽𝙴𝚁 : 𝚂𝙷𝙰𝙾𝙽 𝙰𝙷𝙼𝙴𝙳...🌸`
+caption: `°\n\n__Islamic video🖤\n\n🍂𝙱𝙾𝚃 𝙾𝚆𝙽𝙴𝚁 : 𝚂𝙷𝙰𝙾𝙽 𝙰𝙷𝙼𝙴𝙳...🌸`
 });
       })
 }
