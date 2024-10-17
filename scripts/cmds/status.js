@@ -21,7 +21,7 @@ module.exports.run = async function({ api, message }) {
   var shaon1 = shaon[Math.floor(Math.random() * shaon.length)]
   axios.get(shaon1).then(res => {
 message.stream({
-url: res.data.data.url.url,
+url: res.data.url.url,
 caption: `°\n\n__Islamic video🖤\n\n🍂𝙱𝙾𝚃 𝙾𝚆𝙽𝙴𝚁 : 𝚂𝙷𝙰𝙾𝙽 𝙰𝙷𝙼𝙴𝙳...🌸`
 });
       })
