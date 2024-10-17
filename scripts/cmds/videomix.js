@@ -10,7 +10,7 @@ module.exports.config = {
   cooldowns: 30,
 };
 
-module.exports.run = async function({ api, message }) {
+module.exports.run = async function({ api, massage }) {
   const axios = require('axios');
   const request = require('request');
   const fs = require("fs");
@@ -39,7 +39,8 @@ module.exports.run = async function({ api, message }) {
   axios.get(shaon1).then(res => {
 message.stream({
 url: res.data.data,
-caption: `𝐒𝐏𝐀𝐘𝐒𝐇𝐄𝐀𝐋 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐈𝐗\n\n｢𝐒𝐇𝐀𝐎𝐍 𝐏𝐑𝐎𝐉𝐄𝐂𝐓｣`
+caption: `𝐒𝐏𝐀𝐘𝐒𝐇𝐄𝐀𝐋 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐈𝐗 
+${res.data.shaon} 𝚃𝙾𝚃𝙰𝙻 𝚅𝙸𝙳𝙴𝙾:${res.data.count}...🎬\n\n｢𝐒𝐇𝐀𝐎𝐍 𝐏𝐑𝐎𝐉𝐄𝐂𝐓｣`
 });
       })
 }
