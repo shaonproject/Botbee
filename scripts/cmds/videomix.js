@@ -1,5 +1,5 @@
 module.exports.config = {
-  name: "videomix",
+  name: "random",
   version: "11.9.7",
   role: 0,
   credits: "Islamick Cyber Chat",
