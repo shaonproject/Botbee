@@ -10,12 +10,12 @@ module.exports.config = {
   cooldowns: 30,
 };
 
-run = async function({ api, event }) {
+module.exports.run = async function({ api, event }) {
   const axios = require('axios');
   const request = require('request');
   const fs = require("fs");
-  const apis = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json')
-  const video = apis.data.api
+  const {data} = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json')
+  const video = data.api;
   var shaon = [`${video}/video/status`,
 `${video}/video/sad`,
 `${video}/video/baby`,
@@ -37,16 +37,10 @@ run = async function({ api, event }) {
 ]
   var shaon1 = shaon[Math.floor(Math.random() * shaon.length)]
   axios.get(shaon1).then(res => {
-  let ext = res.data.data.substring(res.data.data.lastIndexOf(".") + 1);
-  let count = res.data.count;
-  let shaon2 = res.data.shaon;
-  let callback = function () {
-          bot.sendMessage({
-            body: `𝐒𝐏𝐀𝐘𝐒𝐇𝐄𝐀𝐋 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐈𝐗 
-${shaon2} 𝚃𝙾𝚃𝙰𝙻 𝚅𝙸𝙳𝙴𝙾:${count}...🎬\n\n｢𝐒𝐇𝐀𝐎𝐍 𝐏𝐑𝐎𝐉𝐄𝐂𝐓｣`,
-            attachment: fs.createWriteStream(__dirname + `/caches/Shaoon.mp4`)
-          }, event.threadID, () => fs.unlinkSync(__dirname + `/caches/Shaoon.mp4`), event.messageID);
-        };
-        request(res.data.data).pipe(fs.createWriteStream(__dirname + `/caches/Shaoon.mp4`)).on("close", callback);
+message.stream({
+url: res.data.data,
+caption: `𝐒𝐏𝐀𝐘𝐒𝐇𝐄𝐀𝐋 𝐑𝐀𝐍𝐃𝐎𝐌 𝐌𝐈𝐗 
+${res.data.shaon} 𝚃𝙾𝚃𝙰𝙻 𝚅𝙸𝙳𝙴𝙾:${res.data.count}...🎬\n\n｢𝐒𝐇𝐀𝐎𝐍 𝐏𝐑𝐎𝐉𝐄𝐂𝐓｣`
+});
       })
 }
