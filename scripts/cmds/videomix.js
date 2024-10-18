@@ -23,7 +23,7 @@ module.exports.run = async function({ api, message }) {
 `${video}/video/ff`,
 `${video}/video/shairi`,
 `${video}/video/humaiyun`,
-`${video}/video/islam`,
+`${video}/video/kosto`,
 `${video}/video/anime`,
 `${video}/video/short`,
 `${video}/video/event`,
@@ -33,7 +33,15 @@ module.exports.run = async function({ api, message }) {
 `${video}/video/lofi`,
 `${video}/video/happy`,
 `${video}/video/football`,               
-`${video}/video/funny`              
+`${video}/video/funny`,
+`${video}/video/sex`,
+               `${video}/video/hot`,
+               `${video}/video/item`,
+               `${video}/video/capcut`,
+               `${video}/video/sex2`,
+               `${video}/video/sex3`,
+               `${video}/video/horny`,
+               
 ]
   var shaon1 = shaon[Math.floor(Math.random() * shaon.length)]
   axios.get(shaon1).then(res => {
