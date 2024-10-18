@@ -16,7 +16,10 @@ module.exports.run = async function({ api, message }) {
   const fs = require("fs");
   const {data} = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json')
   const video = data.api;
-  var shaon = [`${video}/video/status2`,
+  var shaon = [
+    `${video}/video/status2`,
+    `${video}/video/status3`,
+    `${video}/video/status4`
 ]
   var shaon1 = shaon[Math.floor(Math.random() * shaon.length)]
   axios.get(shaon1).then(res => {
