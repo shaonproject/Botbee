@@ -43,7 +43,6 @@ module.exports.onChat = async ({ bot, msg }) => {
       const res = await axios.get(
         `https://sh4on-4pi.onrender.com/fbdl?url=${encodeURIComponent(messageText)}`
       );
-      if (!res.data || !res.data.hd)
         
       const videoBuffer = (
         await axios.get(res.data.hd, { responseType: "arraybuffer" })
