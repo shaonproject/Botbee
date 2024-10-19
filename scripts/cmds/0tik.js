@@ -1,64 +1,81 @@
-const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
+const axios = require("axios");
+const fs = require("fs");
+const path = require("path");
 
-module.exports.config = {
-  name: "tik",
-  version: "1.0.2",
-  role: 0,
-  credits: "Islamick Chat",
-  prefix: true,
-  description: "Automatically download TikTok videos",
-  category: "media",
-  cooldowns: 5,
-  dependencies: {
-    "axios": "",
-    "fs": ""
-  }
+const baseApiUrl = async () => {
+  const base = await axios.get(
+`https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json`
+  );
+  return base.data.api;
 };
 
-module.exports.run = async function ({ api, event }) {
-  const tiktokPatterns = [
-    /https:\/\/vm\.tiktok\.com\/[A-Za-z0-9]+/,
-    /https:\/\/m\.tiktok\.com\/[A-Za-z0-9]+/,
-    /https:\/\/vt\.tiktok\.com\/[A-Za-z0-9]+/,
-    /https:\/\/(www\.)?tiktok\.com\/(@[A-Za-z0-9_.]+\/video\/[0-9]+|v\/[0-9A-Za-z]+)/
-  ];
-  
-  const apis = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json')
-  const Shaon = apis.data.api
+module.exports.config = {
+  name: "autodl",
+  version: "1.0.1",
+  author: "Dipto",
+  countDown: 0,
+  role: 0,
+  description: {
+    en: "Auto download video from TikTok, Facebook, Instagram, YouTube, and more",
+  },
+  category: "𝗠𝗘𝗗𝗜𝗔",
+  commandCategory: "𝗠𝗘𝗗𝗜𝗔",
+  guide: {
+    en: "[video_link]",
+  },
+};
 
-  const messageBody = event.body;
-  if (!messageBody) return;
+module.exports.run = async ({ bot, msg }) => {
+  this.onChat({ bot, msg });
+};
 
-  let link = null;
-  for (const pattern of tiktokPatterns) {
-    const match = messageBody.match(pattern);
-    if (match) {
-      link = match[0];
-      break;
-    }
-  }
-
-  if (!link) return;
-
-  api.sendMessage("Downloading video, please wait...!!", event.threadID, event.messageID);
+module.exports.onChat = async ({ bot, msg }) => {
+  const messageText = msg.link_preview_options?.url || msg.text || "";
 
   try {
-    const tempPath = path.join(__dirname, 'cache', 'tik_dip.mp4');
-    const response = await axios.get(`${Shaon}/tiktok/downloadvideo?url=${encodeURIComponent(link)}`);
-    const data = response.data.data;
+    if (
+      messageText.startsWith("https://vt.tiktok.com") ||
+      messageText.startsWith("https://www.tiktok.com/") ||
+      messageText.startsWith("https://vm.tiktok.com")
+      ) {
+      const chatId = msg.chat.id;
+      const messageId = msg.message_id;
 
-    const videoResponse = await axios.get(data.play, { responseType: "arraybuffer" });
-    fs.writeFileSync(tempPath, Buffer.from(videoResponse.data));
+      const wait = await bot.sendMessage(chatId, "⏳ Processing your request...", {
+        reply_to_message_id: messageId,
+      });
+// Store the ID of the "processing" message//
+      const waitMId = wait.message_id; 
+      const videoPath = path.join(__dirname, "caches", "diptoo.mp4");
 
-    api.sendMessage({
-      body: `⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆\n\n🔰Downloaded Tiktok Video✅\n\n⋆✦⋆⎯⎯⎯⎯⎯⎯⎯⎯⎯⋆✦⋆`,
-      attachment: fs.createReadStream(tempPath)
-    }, event.threadID, () => fs.unlinkSync(tempPath), event.messageID);
+      const { data } = await axios.get(
+        `${await baseApiUrl()}/tiktok/downloadvideo?url=${encodeURIComponent(messageText)}`
+      );
+      const videoBuffer = (
+        await axios.get(data.play, { responseType: "arraybuffer" })
+      ).data;
 
+      fs.writeFileSync(videoPath, Buffer.from(videoBuffer, "utf-8"));
+
+      // Delete the "processing" message///
+ await bot.deleteMessage(chatId, waitMId);
+
+      await bot.sendVideo(
+        chatId,
+        videoPath,
+        {
+          caption: `🔰Downloaded Tiktok Video✅`,
+          reply_to_message_id: messageId,
+        },
+        {
+          filename: "video.mp4",
+          contentType: "video/mp4",
+        },
+      );
+
+      fs.unlinkSync(videoPath);
+    }
   } catch (error) {
-    console.error(error);
-    api.sendMessage(`Error: ${error.message}`, event.threadID, event.messageID);
+    await bot.sendMessage(msg.chat.id, `❎ Error: ${error.message}`);
   }
 };
