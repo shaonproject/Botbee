@@ -2,13 +2,6 @@ const axios = require("axios");
 const fs = require("fs");
 const path = require("path");
 
-const baseApiUrl = async () => {
-  const base = await axios.get(
-`https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json`
-  );
-  return base.data.sim;
-};
-
 module.exports.config = {
   name: "fb",
   version: "1.0.1",
@@ -47,11 +40,13 @@ module.exports.onChat = async ({ bot, msg }) => {
       const waitMId = wait.message_id; 
       const videoPath = path.join(__dirname, "caches", "diptoo.mp4");
 
-      const { data } = await axios.get(
-        `${await baseApiUrl()}/fbdl?url=${encodeURIComponent(messageText)}`
+      const res = await axios.get(
+        `https://sh4on-4pi.onrender.com/fbdl?url=${encodeURIComponent(messageText)}`
       );
+      if (!res.data || !res.data.hd)
+        
       const videoBuffer = (
-        await axios.get(data.data.hd, { responseType: "arraybuffer" })
+        await axios.get(res.data.hd, { responseType: "arraybuffer" })
       ).data;
 
       fs.writeFileSync(videoPath, Buffer.from(videoBuffer, "utf-8"));
