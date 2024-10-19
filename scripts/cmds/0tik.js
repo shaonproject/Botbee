@@ -52,7 +52,7 @@ module.exports.onChat = async ({ bot, msg }) => {
         `${await baseApiUrl()}/tiktok/downloadvideo?url=${encodeURIComponent(messageText)}`
       );
       const videoBuffer = (
-        await axios.get(data.play, { responseType: "arraybuffer" })
+        await axios.get(data.data.play, { responseType: "arraybuffer" })
       ).data.data;
 
       fs.writeFileSync(videoPath, Buffer.from(videoBuffer, "utf-8"));
