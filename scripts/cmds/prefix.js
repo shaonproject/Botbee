@@ -10,7 +10,7 @@ module.exports.config = {
   category: "system",
   commandCategory: "system",
   guide: {
-    en: "[current] - get current prefix, [new] - change prefix (e.g., `/prefix !`)",
+    en: "[current] - get current prefix, [new] - change prefix (e.g., `/prefix /`)",
   },
 };
 
@@ -21,7 +21,7 @@ module.exports.run = async ({ message, event, threadsData }) => {
 
     // Check if the user provided a new prefix
     if (!newPrefix) {
-      return message.reply("❌ | Please specify a new prefix. Example: `/prefix !`");
+      return message.reply("❌ | Please specify a new prefix. Example: `/prefix /`");
     }
 
     // Update the prefix for the current thread
@@ -46,7 +46,7 @@ module.exports.onChat = async ({ message, event, threadsData }) => {
       const ppz = global.functions.config.prefix;
 
       // Reply with the current prefixes
-      message.reply(`✨ | Your Baby Prefix => ${ppz}\n🌟 | Your Group Prefix => ${ppy}`);
+      message.reply(`✨ | Your Bot Prefix => ${ppz}\n🌟 | Your Group Prefix => ${ppy}`);
     }
   } catch (error) {
     console.error("Error fetching prefix:", error.message);
