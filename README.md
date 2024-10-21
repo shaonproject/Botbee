@@ -1,9 +1,9 @@
 ---
 <div align="center">
   <img src="https://i.ibb.co/G5r6p5r/image.png" width="60"/>
-   <h1>Bot'Bee<sub><sub>v1.0.0🚀</sub><sub><sub><h6>- Made By Dipto</h6></sub></sub></sub>
+   <h1>Bot'Bee<sub><sub>v1.0.0🚀</sub><sub><sub><h6>- Made By Shaon Ahmed</h6></sub></sub></sub>
   </h1>
-  <p><em>A Powerful Telegram bot built by Dipto for various automated tasks.</em></p>
+  <p><em>A Powerful Telegram bot built by Shaon Ahmed for various automated tasks.</em></p>
   <p><small>Version 1.0.0</small></p>
 </div>
 
@@ -132,7 +132,7 @@ module.exports = {
     name: "echo",
     version: "1.0",
     aliases:["eco"],
-    author: "dipto",
+    author: "Shaon Ahmed",
     countDown: 3,
     role: 3, 
     description: "Echoes back the message sent by the user",
@@ -163,7 +163,7 @@ module.exports = {
     name: "echo",
     version: "1.0",
     aliases:["eco"],
-    author: "dipto",
+    author: "Shaon Ahmed",
     countDown: 3,
     role: 3, 
     description: "Echoes back the message sent by the user",
@@ -197,7 +197,7 @@ module.exports = {
     name: "echo",
     version: "1.0",
     aliases:["eco"],
-    author: "dipto",
+    author: "Shaon Ahmed",
     countDown: 3,
     role: 3, 
     description: "Echoes back the message sent by the user",
@@ -263,7 +263,7 @@ module.exports = {
     version: "1.0",
 //usages of aliases (it should be an Array [])
     aliases:["eco"],
-    author: "dipto",
+    author: "Shaon Ahmed",
     countDown: 3,
     role: 3, 
     description: "Echoes back the message sent by the user",
@@ -291,7 +291,7 @@ module.exports = {
 //usages of usePrefix (it should be true or false)
     usePrefix: true,//or false 
     aliases:["eco"],
-    author: "dipto",
+    author: "Shaon Ahmed",
     countDown: 3,
     role: 3, 
     description: "Echoes back the message sent by the user",
@@ -319,7 +319,7 @@ const axios = require('axios');
 module.exports.config = {
     name: "bby",
     version: "1.0",
-    credits: "Dipto",
+    credits: "Shaon Ahmed",
     role: 0,
     usePrefix: false,
     description: "Talk to baby bot",
@@ -396,7 +396,7 @@ const axios = require('axios');
 module.exports.config = {
     name: "bby",
     version: "1.0",
-    credits: "Dipto",
+    credits: "Shaon Ahmed",
     role: 0,
     usePrefix: false,
     description: "Talk to baby bot",
@@ -644,23 +644,23 @@ If you encounter any issues, please report them at [Issues](https://github.com/D
 
 ## ✍️ Author
 
-- **Dipto**
+- **SHAON AHMED**
 
-![Dipto's Profile](https://telegra.ph/file/4b46589e723817e575717.jpg)
-[Facebook ID](https://www.facebook.com/dipto008)
+![Shaon Ahmed's Profile](https://telegra.ph/file/4b46589e723817e575717.jpg)
+[Facebook ID](https://www.facebook.com/Hey.Its.Me.Shaon.Ahmed)
 
 ---
 ## 🌐 Support Group
 
-[Your Baby Group(Telegram)](https://t.me/your_baby_group)
+[Your Baby Group(Telegram)](https://t.me/shaon_project_group)
 
-[Your Baby Group(Messager)](https://m.me/j/Abbzx_R02jroVmUv/)
+[Your Baby Group(Messager)](https://m.me/j/AbbJCbf8buSEFX3t/)
 
 ---
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/Diptogittt/telegram-bot)
+- [GitHub Repository](https://github.com/shaonproject25/telegram-bot)
 - [License](./LICENSE)
 
 ---
