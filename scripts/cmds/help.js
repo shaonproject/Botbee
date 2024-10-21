@@ -18,7 +18,7 @@ module.exports.run = async ({ event, args, message, threadsData }) => {
     const commandFiles = fs.readdirSync(path.join(__dirname, '..', 'cmds')).filter(file => file.endsWith('.js'));
     const config = require('../../config.json');
     const thread = await threadsData.getThread(event.chat.id);
-    const prefix = thread?.prefix || '!';
+    const prefix = thread?.prefix || '/';
     let categories = {};
     let totalCommands = 0;
     for (const file of commandFiles) {
