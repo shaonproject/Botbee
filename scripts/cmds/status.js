@@ -1,9 +1,9 @@
 module.exports.config = {
-  name: "/",
+  name: "status",
   version: "11.9.7",
   role: 0,
   credits: "Islamick Cyber Chat",
-  prefix: false,
+  prefix: true,
   description: "random love story video",
   category: "video",
   usages: "random",
