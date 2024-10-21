@@ -3,7 +3,7 @@ module.exports.config = {
   version: "11.9.7",
   role: 0,
   credits: "Islamick Cyber Chat",
-  prefix:true,
+  prefix: false,
   description: "random love story video",
   category: "video",
   usages: "random",
