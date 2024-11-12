@@ -10,7 +10,7 @@ const baseApiUrl = async () => {
 };
 
 module.exports.config = {
-  name: "tik",
+  name: "tik1",
   version: "1.0.1",
   author: "Dipto",
   countDown: 0,
