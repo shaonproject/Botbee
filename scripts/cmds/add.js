@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports.config = {
   name: "add",
   version: "11.9.7",
-  permission: 0,
+  role: 0,
   credits: "Islamick Cyber Chat",//Nazrul
   usePrefix: true,
   description: "random love story video",
