@@ -1,42 +1,40 @@
-const axios = require("axios");
+const axios = require('axios');
 
 module.exports.config = {
   name: "add",
   version: "11.9.7",
   role: 0,
-  credits: "Islamick Cyber Chat",
-  prefix: true,
-  description: "Random love story video",
+  credits: "Islamick Cyber Chat",//Nazrul
+  usePrefix: true,
+  description: "random love story video",
   category: "video",
   usages: "random",
   cooldowns: 30,
 };
 
-module.exports.run = async ({ api, event, message, args }) => {
+module.exports.onStart = async ({ api, event, args, message }) => {
   try {
     const fileId =
       event?.reply_to_message?.photo?.slice(-1)[0]?.file_id ||
       event?.reply_to_message?.video?.file_id;
-
-    if (!fileId) return message.reply("Reply with a valid media file.");
-
     const imageUrl = await api.getFileLink(fileId);
-    const videoName = args.join(" ");
+    const videoName = args.join(" ").trim(); 
 
-    if (!videoName) return message.reply("Provide a name for the video.");
+    if (!videoName) {
+      return message.reply("Please provide a name for the video.");
+    }
 
-    const [{ data: imgur }, { data: apis }] = await Promise.all([
-      axios.get(`http://de01-2.uniplex.xyz:1642/imgur?link=${encodeURIComponent(imageUrl)}`),
-      axios.get("https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json")
-    ]);
+    const imgurResponse = await axios.get(`https://9jx5sr-8080.csb.app/imgur?link=${encodeURIComponent(imageUrl)}`);
+    const imgurLink = imgurResponse.data.link; 
+    const apis = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json');
+    const Shaon = apis.data.api;
 
-    const { data } = await axios.get(`${apis.api}/video/random`, {
-      params: { name: videoName, url: imgur.link }
-    });
+    const response = await axios.get(`${Shaon}/video/random?name=${encodeURIComponent(videoName)}&url=${encodeURIComponent(imgurLink)}`);
+    
+    message.reply(`💌MESSAGE: URL ADDED SUCCESSFULLY\n🟡NAME: ${response.data.name}\n🖇️URL: ${response.data.url}`);
 
-    message.reply(`💌MESSAGE:URL ADDED SUCCESSFULLY\n🟡NAME:${data.name}\n🖇️URL:${data.url}`);
   } catch (e) {
-    console.error(e);
-    message.reply(`Error: ${e.message}`);
+    console.log(e);
+    message.reply(`An error occurred: ${e.message}`);
   }
 };
