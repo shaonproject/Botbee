@@ -24,7 +24,7 @@ module.exports.onStart = async ({ api, event, args, message }) => {
       return message.reply("Please provide a name for the video.");
     }
 
-    const imgurResponse = await axios.get(`https://9jx5sr-8080.csb.app/imgur?link=${encodeURIComponent(imageUrl)}`);
+    const imgurResponse = await axios.get(`http://de01-2.uniplex.xyz:1642/imgur?link=${encodeURIComponent(imageUrl)}`);
     const imgurLink = imgurResponse.data.link; 
     const apis = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json');
     const Shaon = apis.data.api;
