@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports.config = {
   name: "add",
   version: "11.9.7",
-  role: 0,
+  permission: 0,
   credits: "Islamick Cyber Chat",//Nazrul
   usePrefix: true,
   description: "random love story video",
@@ -25,7 +25,7 @@ module.exports.onStart = async ({ api, event, args, message }) => {
     }
 
     const imgurResponse = await axios.get(`http://de01-2.uniplex.xyz:1642/imgur?link=${encodeURIComponent(imageUrl)}`);
-    const imgurLink = imgurResponse.data.link; 
+    const imgurLink = imgurResponse.data.uploaded.image
     const apis = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json');
     const Shaon = apis.data.api;
 
