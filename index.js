@@ -2,7 +2,7 @@ const express = require('express');
 const { spawn } = require('child_process');
 const app = express();
 const colors = require('colors')
-const port = 3000;
+const port = 200;
 let botProcess;
 const config = require('./config.json');
 const User = require("./database/users");
