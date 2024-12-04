@@ -2,17 +2,15 @@ const axios = require("axios");
 
 module.exports.config = {
   name: "album",
-  alices: ["videos"],
-  version: "1.0.0",
+  version: "11.9.7",
   role: 0,
-  credits: "Nayan",
+  credits: "Islamick Cyber Chat",
   prefix: true,
-  description: "Get various types of videos via inline keyboard",
-  category: "media",
-  usages: "/video or /videos",
-  cooldowns: 5,
+  description: "random love story video",
+  category: "video",
+  usages: "random",
+  cooldowns: 30,
 };
-
 module.exports.start = async ({ event, api, adminBatton}) => {
   const { message } = event;
   const chatId = message.chat.id;
