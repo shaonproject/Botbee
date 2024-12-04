@@ -1,7 +1,7 @@
 const axios = require("axios");
 
 module.exports.config = {
-  name: "video",
+  name: "album",
   alices: ["videos"],
   version: "1.0.0",
   role: 0,
