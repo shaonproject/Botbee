@@ -11,7 +11,7 @@ module.exports.config = {
   usages: "random",
   cooldowns: 30,
 };
-module.exports.start = async ({ event, api, adminBatton}) => {
+module.exports.start = async ({ event, bot, adminBatton}) => {
   const { message } = event;
   const chatId = message.chat.id;
 
@@ -43,36 +43,38 @@ module.exports.start = async ({ event, api, adminBatton}) => {
           { text: 'Hot', callback_data: '/video/hot' }
         ],
         [
-          { text: 'Random', callback_data: '/video/mixvideo' }
+          { text: 'Random', callback_data: '/video/sex' }
         ]
       ]
     }
   };
 
-  const waitMsg = await api.sendMessage(chatId, "Select Video Type", videoSelectionMarkup);
+  const waitMsg = await bot.sendMessage(chatId, "Select Video Type", videoSelectionMarkup);
 
   api.once('callback_query', async (callbackQuery) => {
     const name = callbackQuery.data;
-    await api.deleteMessage(chatId, waitMsg.message_id);
+    await bot.deleteMessage(chatId, waitMsg.message_id);
 
-    const waitVoiceMsg = await api.sendMessage(chatId, "Please wait...", { reply_to_message_id: message.message_id });
+    const waitVoiceMsg = await bot.sendMessage(chatId, "Please wait...", { reply_to_message_id: message.message_id });
 
     try {
-      const apis = await axios.get('https://raw.githubusercontent.com/MOHAMMAD-NAYAN/Nayan/main/api.json');
-      const n = apis.data.api;
-      const data = await axios.get(`${n}${name}`);
+      const apis = await axios.get('https://raw.githubusercontent.com/shaonproject/Shaon/main/api.json');
+      
+  const Shaon = apis.data.api;
+
+      const data = await axios.get(`${Shaon}${name}`);
       console.log(data.data);
       const url = data.data.data || data.data.url.url;
-      const caption = data.data.nayan || `${data.data.cp}`;
+      const caption = data.data.shaon || `${data.data.cp}`;
 
       
 
-      await api.sendVideo(chatId, url, { caption: caption, reply_to_message_id: message.message_id, ...adminBatton });
-      await api.deleteMessage(chatId, waitVoiceMsg.message_id);
+      await bot.sendVideo(chatId, url, { caption: caption, reply_to_message_id: message.message_id, ...adminBatton });
+      await bot.deleteMessage(chatId, waitVoiceMsg.message_id);
     } catch (error) {
-      await api.deleteMessage(chatId, waitVoiceMsg.message_id);
+      await bot.deleteMessage(chatId, waitVoiceMsg.message_id);
       console.error('Error getting file info:', error);
-      api.sendMessage(chatId, "❌ Failed to fetch video. Try again later.", { reply_to_message_id: message.message_id });
+      bot.sendMessage(chatId, "❌ Failed to fetch video. Try again later.", { reply_to_message_id: message.message_id });
     }
   });
 };
