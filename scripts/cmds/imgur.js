@@ -23,7 +23,7 @@ module.exports.onStart = async ({ api, event, args, message }) => {
   
 
     const imgurResponse = await axios.get(`${Shaon}/imgur?link=${encodeURIComponent(imageUrl)}`);
-    const imgurLink = imgurResponse.data.uploaded.image;
+    const imgurLink = imgurResponse.data.uploaded.image
 
   } catch (e) {
     console.log(e);
